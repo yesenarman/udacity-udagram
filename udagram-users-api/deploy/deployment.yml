@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: users-api
+  labels:
+    app: users-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: users-api
+  template:
+    metadata:
+      labels:
+        app: users-api
+    spec:
+      containers:
+      - name: users-api
+        image: yesenarman/udagram-users-api:latest
+        env:
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: udagram-secrets
+              key: jwt_secret
+        - name: POSTGRES_DB
+          valueFrom:
+            secretKeyRef:
+              name: udagram-secrets
+              key: postgres_db
+        - name: POSTGRES_HOST
+          valueFrom:
+            secretKeyRef:
+              name: udagram-secrets
+              key: postgres_host
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: udagram-secrets
+              key: postgres_password
+        - name: POSTGRES_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: udagram-secrets
+              key: postgres_username
+        - name: URL
+          valueFrom:
+            secretKeyRef:
+              name: udagram-secrets
+              key: url
+        ports:
+        - containerPort: 8082
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8082
+          initialDelaySeconds: 3
+          periodSeconds: 3
