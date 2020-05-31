@@ -3,13 +3,11 @@ version: '3'
 services:
   reverse-proxy:
     image: yesenarman/udagram-reverse-proxy
-    build: ../udagram-reverse-proxy
     ports:
       - '8080:80'
 
   feed-api-svc:
     image: yesenarman/udagram-feed-api
-    build: ../udagram-feed-api
     environment:
       POSTGRES_USERNAME: ${POSTGRES_USERNAME}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -27,7 +25,6 @@ services:
 
   users-api-svc:
     image: yesenarman/udagram-users-api
-    build: ../udagram-users-api
     environment:
       POSTGRES_USERNAME: ${POSTGRES_USERNAME}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -40,6 +37,5 @@ services:
 
   frontend:
     image: yesenarman/udagram-frontend
-    build: ../udagram-frontend
     ports:
       - '4200:8080'
