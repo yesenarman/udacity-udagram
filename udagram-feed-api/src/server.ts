@@ -1,5 +1,7 @@
 import cors from 'cors';
 import express from 'express';
+import logger from 'morgan';
+import { v4 as uuidv4 } from 'uuid';
 import {sequelize} from './sequelize';
 
 import {IndexRouter} from './controllers/v0/index.router';
@@ -15,6 +17,15 @@ import {V0_FEED_MODELS} from './controllers/v0/model.index';
 
   const app = express();
   const port = process.env.PORT || 8081;
+
+  app.use((req, res, next) => {
+    req.id = uuidv4();
+    next();
+  })
+
+  logger.token('id', (req) => req.id);
+
+  app.use(logger(':id :method :url :status :response-time ms - :res[content-length]'));
 
   app.use(bodyParser.json());
 
