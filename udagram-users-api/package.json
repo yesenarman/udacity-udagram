@@ -1,5 +1,5 @@
 {
-  "name": "udagram-api",
+  "name": "udagram-users-api",
   "version": "2.0.0",
   "description": "",
   "main": "src/server.js",
@@ -16,9 +16,10 @@
   "author": "Gabriel Ruttner",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.429.0",
+    "bcrypt": "^3.0.6",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
+    "email-validator": "^2.0.4",
     "express": "^4.16.4",
     "jsonwebtoken": "^8.5.1",
     "pg": "^7.9.0",
@@ -27,6 +28,7 @@
     "sequelize-typescript": "^0.6.9"
   },
   "devDependencies": {
+    "@types/bcrypt": "^3.0.0",
     "@types/bluebird": "^3.5.26",
     "@types/cors": "^2.8.6",
     "@types/express": "^4.16.1",
