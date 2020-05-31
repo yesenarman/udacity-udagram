@@ -1,0 +1,14 @@
+language: minimal
+
+services:
+  - docker
+
+script:
+  - docker --version
+  - docker-compose build
+
+deploy:
+  provider: script
+  script: bash docker_push.sh
+  on:
+    branch: master
