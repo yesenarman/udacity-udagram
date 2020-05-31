@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  reverse-proxy:
+    image: yesenarman/udagram-reverse-proxy
+    build: ../udagram-reverse-proxy
+
+  feed-api-svc:
+    image: yesenarman/udagram-feed-api
+    build: ../udagram-feed-api
+
+  users-api-svc:
+    image: yesenarman/udagram-users-api
+    build: ../udagram-users-api
+
+  frontend:
+    image: yesenarman/udagram-frontend
+    build: ../udagram-frontend

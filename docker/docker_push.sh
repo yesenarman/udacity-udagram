@@ -3,4 +3,4 @@
 set -euo pipefail
 
 echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-docker-compose push
+docker-compose -f docker-compose-build.yml push
